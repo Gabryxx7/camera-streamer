@@ -35,3 +35,6 @@ Alright I gotta go now, I have a bunch of b2b meetings starting soon.I hope the 
 - On nectar server, receiving from client and feeding to another websocket, maybe on another port or another endpoint like `/video_feed`
 - Or running on the gallery laptop, same as above feeding onto localhost
 - Python opencv app reading video feed from nectar's websocket ip on `/video_feed` or from localhost
+
+
+https://stackoverflow.com/questions/42180937/sending-images-using-javascript-websockets-to-flask-server
