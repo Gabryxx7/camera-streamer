@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Client</title>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script  src="js/socket-io.js"></script>    
+</head>
+<body>
+    <img src="">
+    <script>
+        // get img dom element
+        const img = document.querySelector('img');
+        
+        const WS_URL = 'http://127.0.0.1:3005/client';
+        var socket = io.connect(WS_URL);        
+        socket.on('connect', () => {
+            console.log(` on  ${WS_URL}`);
+        });
+
+        socket.on('disconnect', () => {
+            console.log('disconnected');
+        });
+        
+        socket.on('frame', (data) => {
+            console.log("frame received")
+            // set the base64 string to the src tag of the image
+            img.src = data.frame;
+        });
+    </script>
+</body>
+</html>

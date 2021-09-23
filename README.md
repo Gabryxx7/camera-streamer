@@ -38,3 +38,13 @@ Alright I gotta go now, I have a bunch of b2b meetings starting soon.I hope the 
 
 
 https://stackoverflow.com/questions/42180937/sending-images-using-javascript-websockets-to-flask-server
+
+
+Use these python packages versions:
+```
+pip install --upgrade python-socketio==4.6.0
+
+pip install --upgrade python-engineio==3.13.2
+
+pip install --upgrade Flask-SocketIO==4.3.1
+```
