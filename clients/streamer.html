@@ -1,66 +1,52 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Streamer</title>
+    <head>
+        <meta charset="utf-8">
+        <meta content="ugh, hi." name="description">
+        <meta content="Makeup Webcam" name="title">
+        <title>Face Detection</title>
+        <style>
+         #container {
+             margin: 0px auto;
+             border: 10px #333 solid;
+         }
+         #videoElement {
+             width: 640px;
+             height: 480px;
+             display: none;
+             background-color: #666;
+         }
+
+         #imageElement {
+             width: 640px;
+             height: 480px;
+             background-color: #666;
+         }
+
+         #canvasElement {
+             width: 640px;
+             height: 480px;
+             border: 1px solid black;
+         }
+         #photo {
+             width: 640px;
+             height: 480px;
+
+             border: 1px solid black;
+         }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div>
+            <video autoplay="true" id="videoElement"></video>
+                <canvas id="canvasElement"></canvas>
+            </div>
+        </div>
+
+        <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script> -->
     <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/socket-io.js"></script>    
-      
-<script type="text/javascript">
-    var room = '1';
-  </script>
-</head>
-<body>
-    
-  <div id="videos">
-    <video id="localVideo" autoplay muted></video>
-    <video id="remoteVideo" autoplay></video>    
-    <div id="remoteStreams"></div>
-  </div>
-  <div id="chatlog"></div>
-  <textarea id="text" name="text"></textarea>
-  <button id="sendText" onclick="sendData()">Send</button>
-    <!-- <video autoplay></video>
-    <script>
-        // get video dom element
-        const video = document.querySelector('video');
-        
-        // request access to webcam
-        navigator.mediaDevices.getUserMedia({video: {width: 426, height: 240}}).then((stream) => video.srcObject = stream);
-        
-        // returns a frame encoded in base64
-        const getFrame = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            type = 'image/png'
-            canvas.getContext('2d').drawImage(video, 0, 0);
-            data = canvas.toDataURL(type);
-            data = data.replace('data:' + type + ';base64,', '');
-            return data;
-        }
-
-        const WS_URL = 'http://127.0.0.1:3005/streamer';
-        const FPS = 10;                
-        var socket = io.connect(WS_URL);        
-        socket.on('connect', () => {
-            console.log(`Connected on  ${WS_URL}`);        
-            setInterval(() => {
-                socket.emit('image', getFrame());
-            }, 1000 / FPS);
-        });
-
-        socket.on('disconnect', () => {
-            console.log('disconnected');
-        });
-        // const ws = new WebSocket(WS_URL);
-        // ws.onopen = () => {
-        //     console.log(`Connected to ${WS_URL}`);
-        //     setInterval(() => {
-        //         ws.send(getFrame());
-        //     }, 1000 / FPS);
-        // }
-    </script> -->
-    <script src="js/main.js"></script>
-    <!-- <script src="js/adapter.js"></script>    
-    <script src="js/webrtc.js"></script>     -->
-</body>
+    <script  src="js/socket-io.js"></script>    
+        <script  src="js/main_new.js"></script>    
+    </body>
 </html>

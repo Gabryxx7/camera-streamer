@@ -48,3 +48,8 @@ pip install --upgrade python-engineio==3.13.2
 
 pip install --upgrade Flask-SocketIO==4.3.1
 ```
+
+https://blog.miguelgrinberg.com/post/flask-video-streaming-revisited/page/4
+https://github.com/euguroglu/Flask_WebCam_OpenCV
+gunicorn -w 1 --threads 100 --bind 0.0.0.0:3005 app:app
+gunicorn --worker-class gevent --bind 0.0.0.0:3005  -w 2 app:app
