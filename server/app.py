@@ -19,6 +19,7 @@ from PIL import Image
 import numpy as np
 import sys
 from sys import stdout
+import time
 
 ROOM = 'room'
 async_mode = 'eventlet'
@@ -39,6 +40,8 @@ socketio = SocketIO(app, pingTimeout=900, cors_allowed_origins='*', async_mode=a
 socketio.init_app(app, cors_allowed_origins="*")
 thread = None
 thread_lock = Lock()
+total_frames = 1
+start_time = -1
 
 camera = Camera(ImgProc())
 
@@ -96,10 +99,14 @@ def background_thread():
 
 @socketio.on('connect', namespace='/test')
 def test_connect():
+    session['start'] = -1
     app.logger.info("client connected")
 
 @socketio.on('input image', namespace='/test')
 def test_message(input):
+    if session['start']  < 0:
+        session['start'] = time.time()
+        session['total_frames'] = 1
     input = input.split(",")[1]
     camera.enqueue_input(input)
     image_data = input # Do your magical Image processing here!!
@@ -112,8 +119,10 @@ def test_message(input):
     b = base64.b64encode(buffer)
     b = b.decode()
     image_data = "data:image/jpeg;base64," + b
-
-    # print("OUTPUT " + image_data)
+    
+    session['total_frames'] += 1
+    end_time = time.time()
+    print (f"Frame {session['total_frames']}\t FPS: {session['total_frames'] / (end_time - session['start'])}")
     emit('out-image-event', {'image_data': image_data}, broadcast=True)
     #camera.enqueue_input(base64_to_pil_image(input))
 
@@ -233,4 +242,6 @@ def create_app():
     socketio.run(app, host="0.0.0.0", port=3005, debug=True)
 
 if __name__ == '__main__':
+    total_frames = 1
+    start_time = -1
     create_app()
