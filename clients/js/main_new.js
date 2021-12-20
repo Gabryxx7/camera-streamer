@@ -9,8 +9,15 @@ $(document).ready(function(){
     photo = document.getElementById('photo');
     var localMediaStream = null;
   
-    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
-  
+    // var protocol = "http"
+    var protocol = "https"
+     var port = ":3006";
+    // var port = "/ws";
+    var domain = "IP_ADDRESS";
+    var domain = "subdomain.domain.com";
+    var ws_url = protocol+'://' +  domain+port+namespace
+    var socket = io.connect(ws_url, {secure: (protocol == "https"), transports : ['websocket'], reconnect: true, rejectUnauthorized: false});
+    console.log("Connecting to: " + ws_url +"\tSecure? " + (protocol == "https"));   
     function sendSnapshot() {
         if (!localMediaStream) {
           console.log("No stream found")

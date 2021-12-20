@@ -5,11 +5,18 @@ import pickle
 import numpy as np
 import struct ## new
 import zlib
+import ssl
 
 HOST='127.0.0.1'
+HOST='subdomain.domain.com'
 PORT=3006
 
-s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+full_chain_path =  "/etc/letsencrypt/live/subdomain.domain.com/fullchain.pem"
+priv_path =  "/etc/letsencrypt/live/subdomain.domain.com/privkey.pem"
+context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+context.load_cert_chain(full_chain_path, priv_path)
+
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM, 0)
 print('Socket created')
 
 s.bind((HOST,PORT))
