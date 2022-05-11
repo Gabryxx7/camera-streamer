@@ -4,51 +4,100 @@
         <meta charset="utf-8">
         <meta content="ugh, hi." name="description">
         <meta content="Makeup Webcam" name="title">
-        <title>Video Stream</title>
-        <style>
-         #container {
-             margin: 0px auto;
-             border: 10px #333 solid;
-         }
-         #videoElement {
-             width: 640px;
-             height: 480px;
-             display: none;
-             background-color: #666;
-         }
-
-         #imageElement {
-             width: 640px;
-             height: 480px;
-             background-color: #666;
-         }
-
-         #canvasElement {
-             width: 640px;
-             height: 480px;
-             border: 1px solid black;
-         }
-         #photo {
-             width: 640px;
-             height: 480px;
-
-             border: 1px solid black;
-         }
-        </style>
+        <title>Client</title>
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Fira+Code" rel="stylesheet">
+        <link rel="stylesheet" href="./css/main.css">
     </head>
-    <body>
-        <div id="container">
-            <div>
-            <video autoplay="true" id="videoElement"></video>
-                <canvas id="canvasElement"></canvas>
-
-                <img id="photo">
+    <body class="dark">
+        <div id="main-container">
+            <h1>Client</h1>
+            <div class="gallery-container" top-left>
+                <h2> Data From Cloud</h2>
+                <p class="description"> Camera feed sent by the streamer and processed by the cloud server </p>
+                <img id="video-container" client="true">
+            </div>
+            <div class="gallery-container" top-right>
+                <h2> Live Stream </h2>
+                <canvas id="openpose-canvas"></canvas>
+            </div>
+            <div class="gallery-container" bottom-left>
+                <div id="matrix-canvas">
+                  </div>
+            </div>
+            <div class="gallery-container" id="particles-canvas" bottom-right>
             </div>
         </div>
 
         <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script> -->
     <script src="js/jquery-3.3.1.js"></script>
-    <script  src="js/socket-io.js"></script>    
-        <script  src="js/main_new.js"></script>    
+    <script  src="js/socket-io.js"></script><!-- first include tsParticles engine -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine"></script>
+    
+    <!-- then include any tsParticles plugin needed -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles/tsparticles.bundle.min.js"></script>
+    
+    <!-- then include jquery wrapper -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-particles"></script>
+    <!-- <script  src="js/config.js"></script>    -->
+    <script  src="js/config.no-commit.js"></script>   
+    <script  src="js/main_new.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/letterizejs@2.0.1/lib/letterize.min.js"></script>   
+    <script>
+
+    $(document).ready(async function(){
+        $("#particles-canvas")
+            .particles()
+            .ajax("js/particlesConfig.json", function (container) {
+                console.log("callback - tsparticles config loaded");
+                const particles = tsParticles.domItem(0);
+                particles.play();
+            });
+
+            var textLines = 25;
+            var linesLength = 8;
+            for(var i = 0; i < textLines; i++){
+                var newEl = $("<div class='animate-me'> </div>");
+                // var newEl = $("<div class='animate-me'>letterize.js&anime.js</div>");
+                newEl.append(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15))
+                newEl.appendTo("#matrix-canvas");
+            }
+            // var newEl = $("<div class='animate-me'> </div>");
+            // for(var i = 0; i < textLines; i++){
+            //     // var newEl = $("<div class='animate-me'>letterize.js&anime.js</div>");
+            //     newEl.append(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15))
+            //     newEl.append("\n\n");
+            // }
+            // newEl.appendTo("#matrix-canvas");
+
+            const test = new Letterize({
+                    targets: ".animate-me"
+                });
+
+            const animation = anime.timeline({
+                targets: test.listAll,
+                delay: anime.stagger(100, {
+                grid: [test.list[0].length, test.list.length],
+                from: "center"
+                }),
+                loop: true
+            });
+
+            animation
+                .add({
+                scale: 0.5
+                })
+                .add({
+                    margin: "10px"
+                })
+                .add({
+                scale: 1
+                })
+                .add({
+                    margin: "3px"
+                });
+    });
+    </script>
     </body>
 </html>

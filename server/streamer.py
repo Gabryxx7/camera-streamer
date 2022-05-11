@@ -9,16 +9,16 @@ from io import BytesIO
 
 class Streamer(threading.Thread):
 
-    def __init__(self, hostname, port):
+    def __init__(self, config):
         threading.Thread.__init__(self)
 
         # https://docs.python.org/3/library/ssl.html
-        self.full_chain_path =  "/etc/letsencrypt/live/subdomain.domain.com/fullchain.pem"
-        self.priv_path =  "/etc/letsencrypt/live/subdomain.domain.com/privkey.pem"
+        self.full_chain_path =  config.full_chain_path
+        self.priv_path =  config.priv_path
         self.context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
         self.context.load_cert_chain(self.full_chain_path, self.priv_path)
-        self.hostname = hostname
-        self.port = port
+        self.hostname = config.domain
+        self.port = config.port
         self.running = False
         self.streaming = False
         self.jpeg = None
@@ -57,9 +57,12 @@ class Streamer(threading.Thread):
                     msg_size = struct.unpack(">L", packed_msg_size)[0]
                     print("msg_size: {}".format(msg_size))
                     print("Receiving msg...")
+                    prev_data_len = -1
                     while len(data) < msg_size:
                         data += conn.recv(4096)
-                        print(f"\r{(len(data)/msg_size)*100}  {len(data)} / {msg_size}")
+                        if prev_data_len != len(data):
+                            print(f"\r{(len(data)/msg_size)*100}  {len(data)} / {msg_size}")
+                            prev_data_len = len(data)
                     print("MSG Received")
                     try:
                         frame_data = data[:msg_size]
@@ -90,3 +93,14 @@ class Streamer(threading.Thread):
 
     def get_jpeg(self):
         return self.jpeg.tobytes()
+
+    def genFrame(self):
+        while True:
+            if streamer.streaming:
+                yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + streamer.get_jpeg() + b'\r\n\r\n')
+
+
+if __name__ == '__main__':
+    streamer = Streamer(config.domain, config.port)
+    streamer.start()
+    # streamer.genFrame()

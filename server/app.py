@@ -1,4 +1,4 @@
-
+import streaming_config as config
 from img_processing import ImgProc
 import logging
 from flask import Flask, render_template, session, copy_current_request_context, send_from_directory, request, Response
@@ -20,11 +20,8 @@ import numpy as np
 import sys
 from sys import stdout
 import time
-
-ROOM = 'room'
-async_mode = 'eventlet'
-# async_mode = 'threading'
-template_folder = os.path.abspath('../clients')
+ 
+template_folder = os.path.abspath(config.templates_folder_rel)
 print(f"Template folder {template_folder}")
 app = Flask(__name__, template_folder=template_folder, static_folder=template_folder)
 app.logger.addHandler(logging.StreamHandler(stdout))
@@ -35,8 +32,8 @@ app.config.update(
   DEBUG=True,
   SECRET_KEY='You_will_never_know_:)'
 )
-# socketio = SocketIO(app, async_mode=async_mode)
-socketio = SocketIO(app, pingTimeout=900, cors_allowed_origins='*', async_mode=async_mode)
+# socketio = SocketIO(app, async_mode=config.async_mode)
+socketio = SocketIO(app, pingTimeout=900, cors_allowed_origins='*', async_mode=config.async_mode)
 socketio.init_app(app, cors_allowed_origins="*")
 thread = None
 thread_lock = Lock()
@@ -51,24 +48,24 @@ connected_particpants = {}
 @cross_origin()
 def serve_clients():
     print('Serving clients', file=sys.stderr)
-    return send_from_directory('../clients/', 'client.html')
+    return send_from_directory(config.templates_folder_rel, 'client.html')
 
 @app.route('/streamer')
 @cross_origin()
 def serve_page():
     print('Serving streamer', file=sys.stderr)
-    return send_from_directory('../clients/', 'streamer.html')
+    return send_from_directory(config.templates_folder_rel, 'streamer.html')
 
 @app.route('/js/<path:filename>')
 def send_static(filename):
     print('Serving path' + str(filename), file=sys.stderr)
-    return send_from_directory('../clients/js/', filename)
+    return send_from_directory(f"{config.templates_folder_rel}js/", filename)
 
 @app.route('/')
 @cross_origin()
 def serve_stramer():
     print('Serving streamer', file=sys.stderr)
-    return send_from_directory('../clients/', 'index.html')
+    return send_from_directory(config.templates_folder_rel, 'index.html')
 
 def gen():
     """Video streaming generator function."""
@@ -195,7 +192,7 @@ def image(data_image):
 
 @socketio.on('connect')
 def test_connect():
-    emit('ready', {'sid': request.sid}, room=ROOM, skip_sid=sid)
+    emit('ready', {'sid': request.sid}, room=config.socket_room, skip_sid=sid)
 
     
 @socketio.on('message', namespace='/')
@@ -206,7 +203,7 @@ def message(data):
       peerToSend = data['sid']
     data['sid'] = sid
     print(f"Received message from {sid}:{data['type']}")
-    socketio.emit('message', data=data, room=peerToSend if peerToSend else ROOM, skip_sid=sid)
+    socketio.emit('message', data=data, room=peerToSend if peerToSend else config.socket_room, skip_sid=sid)
 
 @socketio.on('disconnect', namespace='/')
 def disconnect():
@@ -239,7 +236,7 @@ def create_or_join(data):
 
 
 def create_app():
-    socketio.run(app, host="0.0.0.0", port=3005, debug=True)
+    socketio.run(app, host="0.0.0.0", port=3006, debug=True, keyfile=config.priv_path, certfile=config.full_chain_path)
 
 if __name__ == '__main__':
     total_frames = 1

@@ -4,49 +4,31 @@
         <meta charset="utf-8">
         <meta content="ugh, hi." name="description">
         <meta content="Makeup Webcam" name="title">
-        <title>Video Stream</title>
-        <style>
-         #container {
-             margin: 0px auto;
-             border: 10px #333 solid;
-         }
-         #videoElement {
-             width: 640px;
-             height: 480px;
-             display: none;
-             background-color: #666;
-         }
-
-         #imageElement {
-             width: 640px;
-             height: 480px;
-             background-color: #666;
-         }
-
-         #canvasElement {
-             width: 640px;
-             height: 480px;
-             border: 1px solid black;
-         }
-         #photo {
-             width: 640px;
-             height: 480px;
-
-             border: 1px solid black;
-         }
-        </style>
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Fira+Code" rel="stylesheet">
+        <link rel="stylesheet" href="./css/main.css">
+        <title>Streamer</title>
     </head>
-    <body>
-        <div id="container">
-            <div>
-            <video autoplay="true" id="videoElement"></video>
-                <canvas id="canvasElement"></canvas>
+    <body class="dark">
+        <div id="main-container">
+            <h1>Streamer</h1>
+            <div class="gallery-container" top-left>
+                <h2> Camera Feed </h2>
+                <p class="description"> Camera Feed straight out of the webcam </p>
+                <video autoplay="true" id="video-container"></video>
+            </div>
+            <div class="gallery-container" top-right>
+                <h2> Compressed Camera Feed </h2>
+                <p class="description"> Compressed image sent to the cloud server</p>
+                <canvas id="video-canvas"></canvas>
             </div>
         </div>
 
         <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script> -->
     <script src="js/jquery-3.3.1.js"></script>
-    <script  src="js/socket-io.js"></script>    
-        <script  src="js/main_new.js"></script>    
+    <script  src="js/socket-io.js"></script>   
+    <!-- <script  src="js/config.js"></script>    -->
+    <script  src="js/config.no-commit.js"></script>   
+    <script  src="js/main_new.js"></script>    
     </body>
 </html>

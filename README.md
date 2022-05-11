@@ -47,3 +47,13 @@ Example on how to run it with gunicorn:
 gunicorn -w 1 --threads 100 --bind 0.0.0.0:3005 app:app
 gunicorn --worker-class gevent --bind 0.0.0.0:3005  -w 2 app:app
 ```
+
+
+
+
+> The working file is app.py
+Run it as `sudo python3 server/app.py`
+Run it as `sudo nohup python3 ~/camera-streamer/server/app.py &`
+
+Start the streamher here: https://domain.com/clients/streamer.html
+And see the feed from the client here: https://domain.com/clients/client.html

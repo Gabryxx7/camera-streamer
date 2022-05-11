@@ -1,0 +1,6 @@
+domain: "domain.com"
+port: 3006
+templates_folder_rel: "../clients/"
+async_mode: "eventlet"
+# async_mode: threading
+socket_room: "ROOM"
