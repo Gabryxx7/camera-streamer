@@ -15,6 +15,8 @@ priv_path =  f"/etc/letsencrypt/live/{domain}/privkey.pem"
 print(f"priv_path: {priv_path}")
 templates_folder_rel= data.get("templates_folder_rel", "")
 print(f"templates_folder_rel: {templates_folder_rel}")
+react_folder = data.get("react_folder", "")
+print(f"react_folder: {react_folder}")
 async_mode = data.get("async_mode", "")
 print(f"async_mode: {async_mode}")
 socket_room= data.get("socket_room", "")

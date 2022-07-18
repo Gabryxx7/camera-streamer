@@ -44,6 +44,12 @@ camera = Camera(ImgProc())
 
 connected_particpants = {}
 
+@app.route('/react')
+@cross_origin()
+def serve_react():
+    print('Serving React', file=sys.stderr)
+    return send_from_directory(config.react_folder, 'index.html')
+
 @app.route('/clients')
 @cross_origin()
 def serve_clients():

@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'Tomorrow';
+    src: url('Tomorrow-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tomorrow';
+    src: url('Tomorrow-Medium.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+/* 
+@font-face {
+    font-family: 'Tomorrow';
+    src: url('Tomorrow-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+} */
+/* 
+@font-face {
+    font-family: 'Tomorrow';
+    src: url('Tomorrow-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+} */
+
+@font-face {
+    font-family: 'Tomorrow';
+    src: url('Tomorrow-ExtraBold.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tomorrow';
+    src: url('Tomorrow-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Tomorrow';
+    src: url('Tomorrow-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Tomorrow';
+    src: url('Tomorrow-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
