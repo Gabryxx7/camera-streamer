@@ -11,7 +11,7 @@ function ViewTitle(props){
             justifyContent='center'
             width='100%'
             height='15%'
-            variant="h2">
+            variant="h4">
                 {props.title}
         </Typography>
     );
@@ -26,7 +26,7 @@ function ViewPlaceholder(props){
             alignItems='center'
             width='100%'
             height={{height}}
-            variant="h3"
+            variant="h5"
             sx={{ border: (theme) => `2px solid ${theme.palette.primary.main}` }}
             >
                 {props.title.toUpperCase()}

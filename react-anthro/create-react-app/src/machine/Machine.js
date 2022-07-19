@@ -22,7 +22,10 @@ export default function Machine(props) {
         justifyContent='center'
         alignItems='center'
         alignContent='center'>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm"
+        sx={{
+          marginBottom: "4rem"
+        }}>
         <Typography
           component="h1"
           variant="h2"

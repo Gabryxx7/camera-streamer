@@ -23,6 +23,14 @@ const theme = createTheme({
       fontFamily: 'Tomorrow',
       color: mainColor,
     },
+    h2: {
+      letterSpacing: '3px',
+      align: "justified",
+      fontWeight: 400,
+      fontSize: 45,
+      fontFamily: 'Tomorrow',
+      textTransform: "uppercase"
+    },
     h3: {
       letterSpacing: '1.1px',
       align: "justified",
@@ -30,14 +38,20 @@ const theme = createTheme({
       fontSize: 24,
       fontFamily: 'Blender Pro',
     },
-    h2: {
-      letterSpacing: '3px',
+    h4: {
+      letterSpacing: '1.1px',
       align: "justified",
       fontWeight: 400,
-      fontSize: 32,
+      fontSize: 30,
       fontFamily: 'Tomorrow',
-      textTransform: "uppercase"
-    }
+    },
+    h5: {
+      letterSpacing: '1.3px',
+      align: "center",
+      fontWeight: 400,
+      fontSize: 20,
+      fontFamily: 'Blender Pro',
+    },
   },
   palette: {
     mode: 'dark',

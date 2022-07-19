@@ -10,7 +10,7 @@ export default function Hero(props) {
         <Box
             sx={{
                 width: '100%',
-                height: '90vh',
+                height: '95vh',
                 position: 'relative',
             }}
             justifyContent="center"
