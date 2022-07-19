@@ -4,6 +4,7 @@ import GridView from './GridView';
 import SingleView from './SingleView';
 
 export default function Quadrants(props) {
+    console.log("State: " +props.variant);
     const variant = props.variant || "grid";
     if(variant === "single"){
         return(
@@ -17,8 +18,10 @@ export default function Quadrants(props) {
     }
     return(
         <Box
-        width='100vw'
-        height='100vh'>
+        margin='auto'
+        align='center'
+        width='90vw'
+        height='95vh'>
             <GridView />
         </Box>)
 }

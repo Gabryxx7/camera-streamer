@@ -5,6 +5,7 @@ import './Fonts/Tomorrow/stylesheet.css';
 
 const mainColor = 'rgba(50,255,50,1.0)'
 const mainColorDarker = 'rgba(0,255,0,1.0)'
+const mainColorDisabled = 'rgba(0,100,0,0.6)'
 const textWhite = '#FFFFFFFF'
 // A custom theme for this app
 const theme = createTheme({
@@ -12,24 +13,30 @@ const theme = createTheme({
     fontFamily: 'Blender Pro',
     color: textWhite,
     subtitle1: {
-      fontSize: 18,
+      fontSize: 20,
       align: 'left',
     },
     h1: {
+      letterSpacing: '3px',
       align: "center",
       fontSize: 90,
       fontFamily: 'Tomorrow',
       color: mainColor,
     },
-    h2: {
-      align: "center",
-      fontSize: 60,
-      fontFamily: 'Tomorrow',
-    },
     h3: {
+      letterSpacing: '1.1px',
       align: "justified",
       fontWeight: 400,
-      fontSize: 26,
+      fontSize: 24,
+      fontFamily: 'Blender Pro',
+    },
+    h2: {
+      letterSpacing: '3px',
+      align: "justified",
+      fontWeight: 400,
+      fontSize: 32,
+      fontFamily: 'Tomorrow',
+      textTransform: "uppercase"
     }
   },
   palette: {
@@ -39,7 +46,7 @@ const theme = createTheme({
       darker: mainColorDarker,
     },
     secondary: {
-      main: mainColorDarker,
+      main: mainColorDisabled,
     },
     error: {
       main: red.A400,

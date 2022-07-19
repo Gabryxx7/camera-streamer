@@ -13,6 +13,11 @@ import Hero from './hero/Hero'
 import Machine from './machine/Machine'
 import theme from './theme'
 import "./main.scss"
+import { useState } from 'react'
+import { Stack } from '@mui/material';
+
+let state = null;
+let setState = null;
 
 function Copyright() {
   return (
@@ -28,11 +33,14 @@ function Copyright() {
 }
 
 export default function App() {
+  [state, setState] = useState('gridView')
   return (
       <ThemeProvider theme={theme}>
         <Container  sx={{ maxWidth:'100%'  }} maxWidth={false} disableGutters >
+        <Stack
+          spacing={9}>
         <Hero theme={theme} />
-        <Machine theme={theme} quadrantView='single' />
+        <Machine theme={theme} data={state} />
           {/* <Box sx={{ my: 4 }}> */}
         <Album theme={theme}/>
         <Typography variant="h4" component="h1" gutterBottom>
@@ -40,6 +48,7 @@ export default function App() {
         </Typography>
         <ProTip />
         <Copyright />
+        </Stack>
     </Container>
       </ThemeProvider>
   );

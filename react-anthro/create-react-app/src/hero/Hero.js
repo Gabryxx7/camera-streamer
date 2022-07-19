@@ -26,7 +26,7 @@ export default function Hero(props) {
                     },
                 }}
                 alt="Anthropomorphic machine 3D model."
-                src={require("./media/tensegritybanner.jpg").default}        
+                src={require("./media/tensegritybanner.jpg")}        
             />
             <Box
                 justifyContent="center"
@@ -62,7 +62,7 @@ export default function Hero(props) {
                             position: 'relative',
                         }}
                         alt="Science Gallery Logo"
-                        src={require("./media/sciencegallery-logo.png").default}/>  
+                        src={require("./media/sciencegallery-logo.png")}/>  
                 </Stack> 
                 <Stack
                     spacing={5}
@@ -82,7 +82,7 @@ export default function Hero(props) {
                             filter: 'drop-shadow(1px 1px 4px #00000060)',
                         }}
                         alt="Stelarc Logo."
-                        src={require("./media/stelarc-logo.png").default}        
+                        src={require("./media/stelarc-logo.png")}        
                     />
                     <Stack
                         alignItems="center"
