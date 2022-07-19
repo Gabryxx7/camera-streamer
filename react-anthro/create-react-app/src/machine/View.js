@@ -18,13 +18,14 @@ function ViewTitle(props){
 }
 
 function ViewPlaceholder(props){
+    const height = props.size === "full" ? '100%' : '85%'
     return (
         <Typography
             display='flex'
             justifyContent='center'
             alignItems='center'
             width='100%'
-            height='85%'
+            height={{height}}
             variant="subtitle1"
             sx={{ border: (theme) => `2px solid ${theme.palette.primary.main}` }}
             >
@@ -39,7 +40,11 @@ export default function View(props) {
     const titleString = props.title || (props.variant.charAt(0).toUpperCase() + props.variant.slice(1));
     const title =  <ViewTitle title={titleString} />
     const variant = props.variant;
-    const placeholder = <ViewPlaceholder title={variant} />
+    let size =  props.size || "";
+    if(titlePosition === "none"){
+        size = "full"
+    }
+    const placeholder = <ViewPlaceholder title={variant} size={size} />
     return(
         <Stack
         spacing={1}

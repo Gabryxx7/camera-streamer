@@ -6,17 +6,17 @@ import CameraView from "./CameraView"
 import OpenPoseView from "./OpenPoseView"
 import CodeView from "./CodeView"
 import VisualisationView from "./VisualisationView"
-// import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
+import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
 
 function NextArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div 
         className={className}
-        style={{ ...style, display: "block", maxWidth: '3rem' }}
+        style={{ ...style, display: "block"}}
         onClick={onClick}
       > 
-      {/* <svg data-testid='ExpandCircleDownOutlinedIcon' width='3rem' height='3rem' style={{fill: "green"}}></svg> */}
+      <ExpandCircleDownOutlinedIcon color="primary" sx={{transform:'rotate(-90deg)'}} />
       </div>
     );
   }
@@ -25,10 +25,10 @@ function PrevArrow(props) {
     return (
     <div 
         className={className}
-        style={{ ...style, display: "block", maxWidth: '3rem'  }}
+        style={{ ...style, display: "block"  }}
         onClick={onClick}
     > 
-    {/* <ExpandCircleDownOutlinedIcon /> */}
+    <ExpandCircleDownOutlinedIcon color="primary" sx={{transform:'rotate(90deg)'}} />
     </div>
     );
 }
@@ -45,11 +45,31 @@ function CustomSlide(props) {
 
 export default function SingleView(props) {
     const singleViewSettings = {
+      customPaging: function(index) {
+        let view = <div></div>
+        if(index === 1){
+          view = <CameraView titlePosition="none" />
+        }
+        else if(index === 2){
+          view = <OpenPoseView titlePosition="none" />
+        }
+        else if(index === 3){
+          view = <CodeView titlePosition="none" />
+        }
+        else{
+          view = <VisualisationView titlePosition="none" />
+        }
+
+        return (
+          <a> {view} </a>
+        );
+      },
         dots: true,
         dotsClass: "slick-dots slick-thumb",
         slidesToShow: 1,
         slidesToScroll: 1,
         speed: 500,
+        lazyLoad: true,
         adaptiveHeight: false,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />

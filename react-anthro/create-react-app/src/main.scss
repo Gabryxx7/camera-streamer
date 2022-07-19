@@ -16,6 +16,30 @@
     height: 100%;
 }
 
+.slick-arrow::before{
+    content:"";
+    display: none;
+}
+.slick-arrow{
+    top: 59%;
+    width: 2.5rem;
+    height: 2.5rem;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.slick-prev{
+    text-align: center;
+    left: -4rem;
+}
+
+.slick-next{
+    text-align: center;
+    right: -4rem;
+}
+
 .slick-dots,
 .slick-thumb{
     position: relative !important;
@@ -28,7 +52,6 @@
     align-items: center;
     gap: 0.3rem;
     li {
-        background-color: red;
         width: 100%;
         height: 100%;
         padding: 0;
@@ -36,6 +59,10 @@
         button{
             width: 100%;
             height: 100%;
+        }
+        &.slick-active .MuiTypography-root{
+            border-width: 7px;
+            transition: border-width 0.1s linear;
         }
     }
 }
