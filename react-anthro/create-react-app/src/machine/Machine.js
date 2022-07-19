@@ -5,11 +5,15 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Quadrants from './Quadrants';
-import { ThemeProvider } from '@mui/material/styles';
 
 export default function Machine(props) {
     return (
-        <Stack spacing={1}>
+        <Stack 
+          spacing={1}
+          justifyItems='center'
+          justifyContent='center'
+          alignItems='center'
+          alignContent='center'>
         <Container maxWidth="sm">
           <Typography
             component="h1"

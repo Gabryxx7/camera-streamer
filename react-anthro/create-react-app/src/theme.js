@@ -3,7 +3,8 @@ import { createTheme} from '@mui/material/styles';
 import './Fonts/Blender Pro/stylesheet.css';
 import './Fonts/Tomorrow/stylesheet.css';
 
-const mainColor = 'rgba(0,255,0,1.0)'
+const mainColor = 'rgba(50,255,50,1.0)'
+const mainColorDarker = 'rgba(0,255,0,1.0)'
 const textWhite = '#FFFFFFFF'
 // A custom theme for this app
 const theme = createTheme({
@@ -35,9 +36,10 @@ const theme = createTheme({
     mode: 'dark',
     primary: {
       main: mainColor,
+      darker: mainColorDarker,
     },
     secondary: {
-      main: '#19857b',
+      main: mainColorDarker,
     },
     error: {
       main: red.A400,

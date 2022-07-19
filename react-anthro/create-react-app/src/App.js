@@ -12,6 +12,7 @@ import Album from './album/Album.js';
 import Hero from './hero/Hero'
 import Machine from './machine/Machine'
 import theme from './theme'
+import "./main.scss"
 
 function Copyright() {
   return (
