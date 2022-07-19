@@ -1,14 +1,10 @@
-import React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack'
 
 
 export default function Hero(props) {
     return (
-    <ThemeProvider theme={props.theme}>
       <section className={'root'}>
         <Box
             sx={{
@@ -29,7 +25,7 @@ export default function Hero(props) {
                     },
                 }}
                 alt="Anthropomorphic machine 3D model."
-                src={require("./tensegritybanner.jpg")}        
+                src={require("./media/tensegritybanner.jpg").default}        
             />
             <Box
                 justifyContent="center"
@@ -55,11 +51,7 @@ export default function Hero(props) {
                     }}>
                     <Typography
                         variant="subtitle1"
-                        align="left"
-                        sx={{
-                            fontFamily: 'Blender Pro',
-                            fontSize: 18,
-                        }} >
+                        align="left" >
                     Return to 
                     </Typography>   
                     <Box
@@ -69,7 +61,7 @@ export default function Hero(props) {
                             position: 'relative',
                         }}
                         alt="Science Gallery Logo"
-                        src={require("./sciencegallery-logo.png")}/>  
+                        src={require("./media/sciencegallery-logo.png").default}/>  
                 </Stack> 
                 <Stack
                     spacing={5}
@@ -79,44 +71,32 @@ export default function Hero(props) {
                     sx={{
                         width: '50%',
                         height: '100%',
-                        textShadow: '1px 1px 4px #00000040',
                     }}>  
                     <Box
                         component="img"
                         sx={{
-                            width: '22%',
+                            width: '25%',
+                            maxWidth: '250px',
                             position: 'relative',
                             filter: 'drop-shadow(1px 1px 4px #00000060)',
                         }}
                         alt="Stelarc Logo."
-                        src={require("./stelarc-logo.png")}        
+                        src={require("./media/stelarc-logo.png").default}        
                     />
                     <Stack
                         alignItems="center"
-                        spacing={0}
-                        color='primary.main'
-                        sx={{
-                            fontFamily: 'Tomorrow',
-                            fontSize: 90,
-                            textShadow: '1px 1px 4px #00000066'
-                        }} >
-                        <Box>
+                        spacing={0}>
+                        <Typography variant="h1">
                         Anthropomorphic
-                        </Box>   
-                        <Box>
+                        </Typography>   
+                        <Typography variant="h1">
                         Machine
-                        </Box>     
+                        </Typography>     
                     </Stack>    
                     <Typography
                         variant="h3"
-                        align="center"
-                        className='subtitle-hero'
                         sx={{
-                            textShadow: '1px 1px 4px #00000040',
                             width: '100%',
-                            fontFamily: 'Blender Pro',
-                            fontWeight: 400,
-                            fontSize: 26,
                         }} >
                     The Anthropomorphic Machine is an interactive and performative robotic installation. It is  engineered with pneumatically actuated rubber muscles, steel tendons, a deformable tensegrity skeletal structure, a circulatory system of compressed air, and a vision and computational system. There is both local and online interaction.
                     </Typography>
@@ -130,6 +110,5 @@ export default function Hero(props) {
             </Box>
         </Box>
       </section>
-    </ThemeProvider>
     );
   };
