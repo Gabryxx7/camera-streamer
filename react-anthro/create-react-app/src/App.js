@@ -5,16 +5,17 @@ import Typography from '@mui/material/Typography';
 // import Paper from '@mui/material/Paper';
 import { ThemeProvider } from '@mui/material/styles';
 // import Box from '@mui/material/Box';
+import theme from './theme'
+import "./main.scss"
+import { useState } from 'react'
+import { Stack } from '@mui/material';
 import Link from '@mui/material/Link';
 import ProTip from './ProTip';
 import Album from './album/Album.js';
 // import Button from '@mui/material/Button';
 import Hero from './hero/Hero'
 import Machine from './machine/Machine'
-import theme from './theme'
-import "./main.scss"
-import { useState } from 'react'
-import { Stack } from '@mui/material';
+import Collaborators from './collaborators/Collaborators';
 
 let state = null;
 let setState = null;
@@ -38,9 +39,14 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <Container  sx={{ maxWidth:'100%'  }} maxWidth={false} disableGutters >
         <Stack
-          spacing={9}>
+          spacing={9}
+          justifyItems="center"
+          justifyContent="center"
+          alignItems="center"
+          alignContent="center">
         <Hero theme={theme} />
         <Machine theme={theme} data={state} />
+        <Collaborators />
           {/* <Box sx={{ my: 4 }}> */}
         <Album theme={theme}/>
         <Typography variant="h4" component="h1" gutterBottom>

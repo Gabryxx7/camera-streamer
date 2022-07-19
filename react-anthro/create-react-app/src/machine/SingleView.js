@@ -8,29 +8,19 @@ import CodeView from "./CodeView"
 import VisualisationView from "./VisualisationView"
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined';
 
-function NextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div 
-        className={className}
-        style={{ ...style, display: "block"}}
-        onClick={onClick}
-      > 
-      <ExpandCircleDownOutlinedIcon color="primary" sx={{transform:'rotate(-90deg)'}} />
-      </div>
-    );
-  }
-function PrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
+function Arrow(props){
+  const { className, style, onClick } = props;
+  const rotation = props.rotation || 0;
+  return (
     <div 
-        className={className}
-        style={{ ...style, display: "block"  }}
-        onClick={onClick}
+      className={className}
+      style={{ ...style, display: "block"}}
+      onClick={onClick}
     > 
-    <ExpandCircleDownOutlinedIcon color="primary" sx={{transform:'rotate(90deg)'}} />
+    <ExpandCircleDownOutlinedIcon color="primary" sx={{transform:`rotate(${rotation})`}} />
     </div>
-    );
+  );
+
 }
 
 function CustomSlide(props) {
@@ -71,8 +61,8 @@ export default function SingleView(props) {
         speed: 500,
         lazyLoad: true,
         adaptiveHeight: false,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />
+        nextArrow: <Arrow rotation='-90deg' />,
+        prevArrow: <Arrow rotation='90deg'/>
     };
 
     return(
