@@ -11,18 +11,22 @@ import React, { useState } from "react";
 
 
 export default function Machine(props) {
+  const maxWidth = props.maxWidth || '100%';
   const [state, setState] = useState({
     currentView: 'grid'
   });
   const palette = props.theme.palette;
   return (
       <Stack 
+        className="ViewsContainer"
+        maxWidth={maxWidth}
         spacing={3}
+        alignSelf='center'
         justifyItems='center'
         justifyContent='center'
         alignItems='center'
         alignContent='center'>
-      <Container maxWidth="sm"
+      <Container
         sx={{
           marginBottom: "4rem"
         }}>

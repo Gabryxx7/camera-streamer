@@ -14,6 +14,7 @@ import Link from '@mui/material/Link';
 function Extra(props) {
     const image = props.image || "https://source.unsplash.com/random";
     const title = props.title || "Jane Doe";
+    const inverted = props.inverted || false;
     const url = props.url || "";
     const urlText = props.urlText || url;
     const btnText = props.btnText || 'Click me!';
@@ -25,6 +26,44 @@ function Extra(props) {
     const lineHeight = '1.6rem'
     const imgWidth = '100%'
     const imgHeight = '20%'
+    const cardContent = <CardContent sx={{
+            flexGrow: 0,
+            padding: padding,
+            width:textWidth,
+            display: 'flex',
+            gap:"2rem",
+            height: '100%',
+            padding:'0rem 2rem 0rem 2rem',
+            flexDirection: 'column',
+            justifyItems: 'center',
+            alignItems: 'left',
+            alignContent: 'center',
+            justifyContent: 'center'}}>
+        <Typography variant="h5" fontSize={nameSize} align="left" sx={{marginBottom:"0", lineHeight:"1"}}>
+            {title}
+        </Typography>
+        <Typography  display="block" component="div" fontSize={textSize} align="left" lineHeight={lineHeight} sx={{overflowWrap: 'anywhere'}}
+            nowrap='false'>
+            {text}
+        </Typography>
+        <Button variant="outlined"
+            sx={{
+                alignSelf: 'center',
+                marginTop: "3rem",
+            }}>{btnText}</Button>
+        </CardContent>
+    const cardImage = <Box 
+        className="cardWrapper"
+        sx={{
+            height:"100%",
+            width:"36rem"
+        }}>
+        <CardMedia
+        component='img'
+        image={image}
+        alt={title}
+        />
+    </Box>
     return(
         <Card
             raised={false}
@@ -39,44 +78,8 @@ function Extra(props) {
                 alignItems: 'center',
                 background:'transparent',
                 boxShadow: 'unset' }}>
-            <CardContent sx={{
-                flexGrow: 0,
-                padding: padding,
-                width:textWidth,
-                display: 'flex',
-                gap:"2rem",
-                height: '100%',
-                padding:'0rem 2rem 0rem 2rem',
-                flexDirection: 'column',
-                justifyItems: 'center',
-                alignItems: 'left',
-                alignContent: 'center',
-                justifyContent: 'center'}}>
-            <Typography variant="h5" fontSize={nameSize} align="left" sx={{marginBottom:"0", lineHeight:"1"}}>
-                {title}
-            </Typography>
-            <Typography  display="block" component="div" fontSize={textSize} align="left" lineHeight={lineHeight} sx={{overflowWrap: 'anywhere'}}
-                nowrap={false}>
-                {text}
-            </Typography>
-            <Button variant="outlined"
-                sx={{
-                    alignSelf: 'center',
-                    marginTop: "3rem",
-                }}>{btnText}</Button>
-            </CardContent>
-            <Box 
-                className="cardWrapper"
-                sx={{
-                    height:"100%",
-                    width:"36rem"
-                }}>
-                <CardMedia
-                component='img'
-                image={image}
-                alt={title}
-                />
-            </Box>
+            {inverted ? cardImage : cardContent}
+            {inverted ? cardContent :cardImage}
         </Card>
     );
 }
@@ -87,7 +90,7 @@ export default function Extras(props){
         <Stack
             spacing={5}
             sx={{
-                width:"80%",
+                width:"60%",
                 alignSelf:"center"
             }}>
             <Extra {...props}
@@ -107,6 +110,7 @@ export default function Extras(props){
                 btnText="See More" />
             <Extra {...props}
                 title="Development Archive"
+                inverted='true'
                 text={
                 <div>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et neque non velit aliquet aliquam. Suspendisse dictum molestie feugiat.

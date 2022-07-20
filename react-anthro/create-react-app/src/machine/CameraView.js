@@ -1,4 +1,3 @@
-import React, { Component }  from 'react';
 import View from "./View"
 
 export default function CameraView(props) {

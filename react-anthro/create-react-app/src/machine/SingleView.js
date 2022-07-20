@@ -37,16 +37,16 @@ export default function SingleView(props) {
     const singleViewSettings = {
       customPaging: function(index) {
         let view = <div></div>
-        if(index === 1){
+        if(index === 0){
           view = <CameraView titlePosition="none" />
         }
-        else if(index === 2){
+        else if(index === 1){
           view = <OpenPoseView titlePosition="none" />
         }
-        else if(index === 3){
+        else if(index === 2){
           view = <CodeView titlePosition="none" />
         }
-        else{
+        else if(index === 3){
           view = <VisualisationView titlePosition="none" />
         }
 

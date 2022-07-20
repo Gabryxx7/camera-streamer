@@ -5,9 +5,10 @@ import Stack from '@mui/material/Stack'
 
 
 export default function Hero(props) {
+    const maxWidth = props.maxWidth || '100%';
     return (
-      <section className={'root'}>
         <Box
+            maxWidth={props.maxWidth}
             sx={{
                 width: '100%',
                 height: '95vh',
@@ -110,6 +111,5 @@ export default function Hero(props) {
                 </Stack>
             </Box>
         </Box>
-      </section>
     );
   };
