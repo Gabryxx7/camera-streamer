@@ -11,6 +11,9 @@ import React, { useState } from "react";
 
 
 export default function Machine(props) {
+  React.useEffect(() => {
+      console.log("Hey I'm Machine!")       
+  }, []); 
   const maxWidth = props.maxWidth || '100%';
   const [state, setState] = useState({
     currentView: 'grid'
@@ -53,6 +56,8 @@ export default function Machine(props) {
       </Container>
       <Quadrants 
           variant={state.currentView} 
+          wsClient={props.wsClient}
+          imgSrc={props.imgSrc}
           width='100%'
           height='100vh'/>
       <Stack

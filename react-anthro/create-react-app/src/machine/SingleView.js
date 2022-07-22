@@ -1,4 +1,5 @@
 import React, { Component }  from 'react';
+import Box from '@mui/material/Box';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,38 +21,45 @@ function Arrow(props){
     <ExpandCircleDownOutlinedIcon color="primary" sx={{transform:`rotate(${rotation})`}} />
     </div>
   );
-
 }
 
 function CustomSlide(props) {
-    // const { index, content} = this.props;
     const index = props.index;
-    const content = props.content;
     return (
-        content
+        props.children
     );
   }
 
 
 export default function SingleView(props) {
+    const camera = <CameraView titlePosition="none" wsClient={props.wsClient} webcam={props.webcam}  />
+    const wsClient = props.wsClient
+    let op = <OpenPoseView titlePosition="none" wsClient={props.wsClient} imgSrc={props.imgSrc}  />
+    let code = <CodeView titlePosition="none" wsClient={props.wsClient} />
+    let viz = <VisualisationView titlePosition="none" wsClient={props.wsClient} />
+
     const singleViewSettings = {
       customPaging: function(index) {
-        let view = <div></div>
+        // const camera = <CameraView titlePosition="none" wsClient={props.wsClient} />
+        // const op = <OpenPoseView titlePosition="none" wsClient={props.wsClient} imgSrc={props.imgSrc}  />
+        // const code = <CodeView titlePosition="none" wsClient={props.wsClient} />
+        // const viz = <VisualisationView titlePosition="none" wsClient={props.wsClient} />
+        let view = null
         if(index === 0){
-          view = <CameraView titlePosition="none" />
+          view = camera
         }
         else if(index === 1){
-          view = <OpenPoseView titlePosition="none" />
+          view = op
         }
         else if(index === 2){
-          view = <CodeView titlePosition="none" />
+          view = code
         }
         else if(index === 3){
-          view = <VisualisationView titlePosition="none" />
+          view = viz
         }
 
         return (
-          <a> {view} </a>
+          <a> <Box height='80%' width='80%'>{view}</Box> </a>
         );
       },
         dots: true,
@@ -70,10 +78,10 @@ export default function SingleView(props) {
             Slider {...singleViewSettings}
             width='100%'
             height='100%'>
-            <CustomSlide index={1} content={<CameraView titlePosition="top" /> }/>
-            <CustomSlide index={2} content={<OpenPoseView titlePosition="top"  />} />
-            <CustomSlide index={3} content={<CodeView titlePosition="top"  />} />
-            <CustomSlide index={4} content={<VisualisationView titlePosition="top"  />} />
+            <CustomSlide index={1}> {camera} </CustomSlide>
+            <CustomSlide index={2}> {op} </CustomSlide>
+            <CustomSlide index={3}> {code} </CustomSlide>
+            <CustomSlide index={4}> {viz} </CustomSlide>
         </Slider>
     );
 }

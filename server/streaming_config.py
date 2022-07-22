@@ -1,7 +1,8 @@
 import sys
 import oyaml as yaml
 
-f = open('config.no-commit.yaml') 
+f = open('/home/ubuntu/camera-streamer/server/config.no-commit.yaml')
+# f = open('config.no-commit.yaml') 
 print(f"\n\n----- CONFIG ------")
 data = yaml.load(f, Loader=yaml.FullLoader)
 print(f"data: {data}")

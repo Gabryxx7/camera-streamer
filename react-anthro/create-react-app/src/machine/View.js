@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import Stack from '@mui/material/Stack'
+import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 
 
@@ -34,7 +35,6 @@ function ViewPlaceholder(props){
     );
 }
 
-
 export default function View(props) {
     const titlePosition = props.titlePosition || "top";
     const titleString = props.title || (props.variant.charAt(0).toUpperCase() + props.variant.slice(1));
@@ -45,6 +45,16 @@ export default function View(props) {
         size = "full"
     }
     const placeholder = <ViewPlaceholder title={variant} size={size} />
+    const dataView = <Box
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        width='100%'
+        height='95%'
+        variant="h5"
+        sx={{ border: (theme) => `2px solid ${theme.palette.primary.main}` }}>
+            {props.children}
+        </Box>
     return(
         <Stack
         spacing={1}
@@ -54,7 +64,7 @@ export default function View(props) {
         width='100%'
         height='100%'>
             {titlePosition === "top" ? title : ""}
-            {placeholder}
+            {React.Children.count(props.children) > 0 ? dataView : placeholder}
             {titlePosition === "bottom" ? title : ""}
         </Stack>
     );

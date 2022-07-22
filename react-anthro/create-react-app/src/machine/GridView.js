@@ -18,20 +18,17 @@ export default function GridView(props) {
         width='100%'
         height='100%'>
         <Grid item xs={6}>
-            <CameraView 
-                titlePosition="top"/>
+            {props.children}
+            <CameraView titlePosition="top" wsClient={props.wsClient} webcam={props.webcam} />
         </Grid>
         <Grid item xs={6}>
-            <OpenPoseView
-                titlePosition="top" />
+            <OpenPoseView titlePosition="top" wsClient={props.wsClient} imgSrc={props.imgSrc}   />
         </Grid>
         <Grid item xs={6}>
-            <CodeView 
-                titlePosition="bottom" />
+            <CodeView titlePosition="bottom" wsClient={props.wsClient} />
         </Grid>
         <Grid item xs={6}>
-            <VisualisationView
-                titlePosition="bottom"/>
+            <VisualisationView titlePosition="bottom" wsClient={props.wsClient}/>
         </Grid>
     </Grid>
     );

@@ -69,9 +69,11 @@
             width: 100% !important;
             height: 100% !important;
         }
-        &.slick-active .MuiTypography-root{
-            border-width: 7px;
-            transition: border-width 0.1s linear;
+        &.slick-active{
+            .MuiBox-root,.MuiTypography-root{
+                border-width: 7px;
+                transition: border-width 0.1s linear;
+            }
         }
     }
 }

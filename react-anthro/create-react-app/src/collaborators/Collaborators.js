@@ -43,7 +43,6 @@ function CollaboratorCard(props){
     const textSize = direction === 'row' ? '1.3rem' : '1.1rem'
     const lineHeight = direction === 'row' ? '1.6rem' : '1.25rem'
     const bottomBorderRadius = direction === 'row' ? '5px' : '0px'
-    console.log(name +": " +collapsible);
     return(
         <Grid item xs={xs}>
             <Card
