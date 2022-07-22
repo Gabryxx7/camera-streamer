@@ -15,6 +15,7 @@ function Extra(props) {
     const image = props.image || "https://source.unsplash.com/random";
     const title = props.title || "Jane Doe";
     const inverted = props.inverted || false;
+    const flexDirection = inverted ? "row" : "row-reverse";
     const url = props.url || "";
     const urlText = props.urlText || url;
     const btnText = props.btnText || 'Click me!';
@@ -34,7 +35,7 @@ function Extra(props) {
             gap:"2rem",
             height: '100%',
             padding:'0rem 2rem 0rem 2rem',
-            flexDirection: 'column',
+            flexDirection: "column",
             justifyItems: 'center',
             alignItems: 'left',
             alignContent: 'center',
@@ -55,6 +56,8 @@ function Extra(props) {
     const cardImage = <Box 
         className="cardWrapper"
         sx={{
+            display: 'flex',
+            alignItems: 'center',
             height:"100%",
             width:"36rem"
         }}>
@@ -72,14 +75,15 @@ function Extra(props) {
                 height: "36rem",
                 // height:"100%",
                 display: 'flex',
+                flexDirection: flexDirection,
                 alignContent: 'center',
                 justifyContent: 'space-evenly',
                 justifyItems: 'space-evenly',
                 alignItems: 'center',
                 background:'transparent',
                 boxShadow: 'unset' }}>
-            {inverted ? cardImage : cardContent}
-            {inverted ? cardContent :cardImage}
+            {cardImage}
+            {cardContent}
         </Card>
     );
 }
@@ -88,7 +92,7 @@ function Extra(props) {
 export default function Extras(props){
     return(
         <Stack
-            spacing={5}
+            spacing={8}
             sx={{
                 width:"60%",
                 alignSelf:"center"

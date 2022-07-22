@@ -23,7 +23,7 @@ export default function App() {
   let client = null;
   useEffect(() => {
       if(!wsConnected){
-          client = new W3CWebSocket('ws://anthropomorphicmachine.com:3006/ws');
+          client = new W3CWebSocket('wss://anthropomorphicmachine.com:3006/ws');
           client.onopen = () => {
               console.log('WebSocket Client Connected');
               setWsConnected(true)
